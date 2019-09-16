@@ -1,0 +1,3 @@
+<launch>
+  	<node name="opencv_receiver1" pkg="motion2_detection" type="opencv_receiver1" />	
+</launch>

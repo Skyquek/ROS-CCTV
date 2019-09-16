@@ -1,0 +1,39 @@
+cmake_minimum_required(VERSION 2.8.3)
+project(motion_detection)
+
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  cv_bridge
+  image_transport
+  camera_info_manager
+  sensor_msgs
+)
+
+
+find_package(OpenCV)
+
+catkin_package()
+
+include_directories(
+  ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
+)
+
+add_executable(displaymotionp src/camshift2.cpp)
+target_link_libraries(displaymotionp ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+add_dependencies(displaymotionp ${PROJECT_NAME}_gencpp ${GENCPP_DEPS})
+
+add_executable(opencv_receiver1 src/opencv_receiver.cpp)
+target_link_libraries(opencv_receiver1 ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+add_dependencies(opencv_receiver1 ${PROJECT_NAME}_gencpp ${GENCPP_DEPS})
+
+install(TARGETS 
+    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+install(PROGRAMS
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})

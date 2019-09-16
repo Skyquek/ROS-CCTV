@@ -1,0 +1,3 @@
+<launch>
+  	<node name="motion" pkg="video_stream_opencv" type="displaymotion1" />	
+</launch>

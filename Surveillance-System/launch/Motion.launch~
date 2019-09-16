@@ -1,0 +1,3 @@
+<launch>
+  	<node name="motion" pkg="motion2_detection" type="displaymotionp" />	
+</launch>
